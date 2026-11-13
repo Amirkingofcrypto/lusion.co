@@ -18,7 +18,7 @@ SRC_DIR = os.path.join(BASE_DIR, "src")
 MANIFEST_PATH = os.path.join(SRC_DIR, "manifest.json")
 OUTPUT_JS = os.path.join(BASE_DIR, "_astro/hoisted.CUO_IjfL.js")
 OUTPUT_CSS = os.path.join(BASE_DIR, "_astro/about.CNa9RfUh.css")
-VERSION_TAG = "modular10"
+VERSION_TAG = "modular11"
 
 def minify_css_safe(css_text):
     # Remove CSS comments and collapse unnecessary newlines/indentation without breaking calc() or strings

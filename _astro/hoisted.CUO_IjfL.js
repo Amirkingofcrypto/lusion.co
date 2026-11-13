@@ -48110,10 +48110,40 @@ class TransitionOverlay {
       u.translate(n * f * c, -n * 0.5 * f * c);
       u.scale(p, p);
       if (l == 0) {
-        u.fillStyle = "#333";
-        u.fillRect(-2.5, -0.5, 5, 1);
-        u.fillStyle = "#fff";
-        u.fillRect(-2.5, -0.5, a * 5, 1);
+        // Pixel-assembling AMIR driven by loadBarRatio (0 -> 1)
+        const AMIR_GRID = [
+          " ███  █   █ ███ ████ ",
+          "█   █ ██ ██  █  █   █",
+          "█████ █ █ █  █  ████ ",
+          "█   █ █   █  █  █  █ ",
+          "█   █ █   █ ███ █   █"
+        ];
+        const cell = 0.24;
+        const cols = 21;
+        const rows = 5;
+        const totalW = cols * cell;
+        const totalH = rows * cell;
+        const prog = Math.min(1, Math.max(0, a));
+        const assemble = ease.expoOut(prog);
+        const scatter = 1 - assemble;
+        u.save();
+        let idx = 0;
+        const totalPixels = 50;
+        for (let ry = 0; ry < rows; ry++) {
+          for (let cx = 0; cx < cols; cx++) {
+            if (AMIR_GRID[ry][cx] !== "█") continue;
+            idx++;
+            const ang = idx * 2.3999632;
+            const dist = (2.4 + (idx % 6) * 0.65) * scatter;
+            const px = -totalW * 0.5 + cx * cell + Math.cos(ang) * dist;
+            const py = -totalH * 0.5 + ry * cell + Math.sin(ang) * dist;
+            const active = prog >= (idx - 1) / totalPixels;
+            const s = cell * (0.72 + 0.28 * assemble);
+            u.fillStyle = active ? "#ffffff" : "rgba(255, 255, 255, 0.28)";
+            u.fillRect(px, py, s, s);
+          }
+        }
+        u.restore();
       } else {
         u.fillStyle = "#fff";
         if (this.needsShowText) {
