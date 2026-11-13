@@ -40,6 +40,7 @@ class PageManager {
     return !this._isHiding && this._hasPreloaded && !this._isShowing && !this._needsShowLoading;
   }
   _onRouteChanged(e) {
+    if (!e || !e.target) return;
     if (!this.isIdle) {
       this._pendingRoute = e;
     } else if (this.currRoute !== e) {
