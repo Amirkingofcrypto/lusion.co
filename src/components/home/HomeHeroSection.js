@@ -13,6 +13,7 @@ class HomeHeroSection {
   preInit(e) {
     this.domContainer = e.querySelector("#home-hero");
     this.domVisualContainer = e.querySelector("#home-hero-visual-container");
+    if (typeof homeHeroBanner !== "undefined") homeHeroBanner.mount(this.domVisualContainer);
     this.domHomeTitle = e.querySelector("#home-hero-title");
     this.domHomeScroll = e.querySelector("#home-hero-scroll");
     this.domHomeCrosses = Array.from(e.querySelectorAll(".home-hero-scroll-container-cross"));

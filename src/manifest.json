@@ -92,6 +92,11 @@
       "lines": 444
     },
     {
+      "path": "components/home/HomeHeroBanner.js",
+      "description": "Portfolio Hero Banner & Animated Typewriter",
+      "lines": 123
+    },
+    {
       "id": "07-home-hero-section",
       "path": "components/home/HomeHeroSection.js",
       "start": 31239,
@@ -354,7 +359,7 @@
   "styles": [
     "styles/main.css"
   ],
-  "totalModules": 64,
+  "totalModules": 65,
   "partials": [
     "partials/header.html",
     "partials/menu.html",

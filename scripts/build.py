@@ -18,7 +18,7 @@ SRC_DIR = os.path.join(BASE_DIR, "src")
 MANIFEST_PATH = os.path.join(SRC_DIR, "manifest.json")
 OUTPUT_JS = os.path.join(BASE_DIR, "_astro/hoisted.CUO_IjfL.js")
 OUTPUT_CSS = os.path.join(BASE_DIR, "_astro/about.CNa9RfUh.css")
-VERSION_TAG = "modular6"
+VERSION_TAG = "modular7"
 
 def minify_css_safe(css_text):
     # Remove CSS comments and collapse unnecessary newlines/indentation without breaking calc() or strings
@@ -80,12 +80,15 @@ def build():
         r'(?:<script[^>]*src="/amir/src/config/lusion\.config\.js[^"]*"[^>]*></script>)?'
         r'<script[^>]*src="/amir/_astro/hoisted\.CUO_IjfL\.js[^"]*"[^>]*></script>'
     )
+    css_pattern = re.compile(r'href="/amir/_astro/about\.CNa9RfUh\.css(?:\?v=[^"]*)?"')
 
     updated_count = 0
     for hp in html_files:
         with open(hp, "r", encoding="utf-8") as f:
             ht = f.read()
         ht_new, n = pattern.subn(new_tag, ht)
+        ht_new, nc = css_pattern.subn(f'href="/amir/_astro/about.CNa9RfUh.css?v={VERSION_TAG}"', ht_new)
+        n += nc
         if n > 0 and ht_new != ht:
             with open(hp, "w", encoding="utf-8") as f:
                 f.write(ht_new)

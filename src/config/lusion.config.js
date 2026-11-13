@@ -1,15 +1,30 @@
 /**
  * ============================================================================
- * Lusion Modular Configuration (lusion.config.js)
+ * Lusion Modular Configuration
+ * File: src/config/lusion.config.js
  * ============================================================================
- * Controls 3D scene elements, hero shapes, and modular sections without
- * altering the authentic Lusion WebGL engine.
  */
-window.LusionConfig = window.LusionConfig || {
+window.LUSION_CONFIG = {
   hero: {
-    // Set to false to remove/hide the 3D cross shapes inside the Hero scene
     show3DShapes: false,
     enablePhysics: true
+  },
+  heroBanner: {
+    enabled: true,
+    image: "/amir/assets/images/hero-banner.jpg",
+    eyebrow: "PORTFOLIO // CREATIVE DEVELOPER",
+    prefix: "I craft ",
+    phrases: [
+      "interactive 3D web experiences.",
+      "immersive brand storytelling.",
+      "high-craft digital products.",
+      "motion-driven interfaces.",
+      "memorable web worlds."
+    ],
+    tags: ["3D & WebGL", "Motion Design", "Creative Dev"],
+    typingSpeedMs: 52,
+    deletingSpeedMs: 28,
+    pauseMs: 1800
   },
   sections: {
     hero: true,
@@ -18,18 +33,18 @@ window.LusionConfig = window.LusionConfig || {
     goalTunnel: true,
     endSection: true,
     footer: true
-  },
-  setHeroShapes(visible) {
-    this.hero.show3DShapes = Boolean(visible);
-    if (window.LusionModules && window.LusionModules.home && window.LusionModules.home.balloons) {
-      const b = window.LusionModules.home.balloons;
-      const show = Boolean(visible);
-      for (let i = 0; i < b.balloonList.length; i++) {
-        if (b.balloonList[i].mesh) b.balloonList[i].mesh.visible = show;
-        if (b.balloonList[i].meshBack) b.balloonList[i].meshBack.visible = show;
-      }
-      for (let i = 0; i < b.prePassMeshList.length; i++) {
-        if (b.prePassMeshList[i]) b.prePassMeshList[i].visible = show;
+  }
+};
+
+window.setHeroShapes = function (visible) {
+  window.LUSION_CONFIG.hero.show3DShapes = !!visible;
+  if (typeof homeBalloons !== "undefined" && homeBalloons.balloonList) {
+    for (let i = 0; i < homeBalloons.balloonList.length; i++) {
+      const b = homeBalloons.balloonList[i];
+      if (b.mesh) b.mesh.visible = !!visible;
+      if (b.meshBack) b.meshBack.visible = !!visible;
+      if (homeBalloons.prePassMeshList && homeBalloons.prePassMeshList[i]) {
+        homeBalloons.prePassMeshList[i].visible = !!visible;
       }
     }
   }
