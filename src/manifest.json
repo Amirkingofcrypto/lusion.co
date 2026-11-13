@@ -1,0 +1,225 @@
+{
+  "name": "lusion-modular-architecture",
+  "version": "1.0.0",
+  "config": "config/lusion.config.js",
+  "output": "../_astro/hoisted.CUO_IjfL.js",
+  "modules": [
+    {
+      "id": "01-three-core",
+      "path": "vendor/three.core.js",
+      "start": 1,
+      "end": 25770,
+      "title": "Three.js r158 Core, Math, Geometries, Shaders & WebGLRenderer"
+    },
+    {
+      "id": "02-settings-properties",
+      "path": "core/SettingsAndProperties.js",
+      "start": 25771,
+      "end": 27257,
+      "title": "Browser Detection, Settings, Properties, QuickLoader, Howler & SplitType"
+    },
+    {
+      "id": "03-input-tween-fbo",
+      "path": "core/InputTweenFbo.js",
+      "start": 27258,
+      "end": 28062,
+      "title": "SecondOrderDynamics, Input Controller, ScrollDomRange, Tween & FboHelper"
+    },
+    {
+      "id": "04-task-page-stage-efx",
+      "path": "core/StageAndEffects.js",
+      "start": 28063,
+      "end": 29211,
+      "title": "Task, TaskManager, Page Base Class, Ease, Stage3D, Blur, ShaderHelper, BlueNoise & ScreenPaint"
+    },
+    {
+      "id": "05-home-balloons",
+      "path": "components/home/HomeBalloons.js",
+      "start": 29212,
+      "end": 29905,
+      "title": "HomeBalloonsBackground, HomeBalloonsBody, HomeBalloonsPhysics, HomeBalloons (3D Crosses Hero Scene) & Visuals"
+    },
+    {
+      "id": "06-audio-system",
+      "path": "core/AudioSystem.js",
+      "start": 29906,
+      "end": 31238,
+      "title": "AudioGroup, AudioItem, GlobalAudios & Audios"
+    },
+    {
+      "id": "07-home-hero-section",
+      "path": "components/home/HomeHeroSection.js",
+      "start": 31239,
+      "end": 31386,
+      "title": "HomeHeroSection Component"
+    },
+    {
+      "id": "08-ufx-mesh-line",
+      "path": "components/common/UfxMeshAndLine.js",
+      "start": 31387,
+      "end": 32187,
+      "title": "UfxMesh & Line (3D Procedural Ribbon Lines)"
+    },
+    {
+      "id": "09-video-overlay",
+      "path": "components/ui/VideoOverlay.js",
+      "start": 32188,
+      "end": 33349,
+      "title": "Vimeo Player SDK, TimingSrcConnector & VideoOverlay Component"
+    },
+    {
+      "id": "10-home-reel-section",
+      "path": "components/home/HomeReelSection.js",
+      "start": 33350,
+      "end": 33864,
+      "title": "HomeReelSection Component & DomHelper"
+    },
+    {
+      "id": "11-home-featured-section",
+      "path": "components/home/HomeFeaturedSection.js",
+      "start": 33865,
+      "end": 34345,
+      "title": "ProjectItem, ProjectItemList & HomeFeaturedSection Component"
+    },
+    {
+      "id": "12-noise-camera-controls",
+      "path": "core/CameraAndNoise.js",
+      "start": 34346,
+      "end": 35815,
+      "title": "TextureHelper, Simple1DNoise, BrownianMotion, PostEffect, GoalTunnelEfx, GoalBlackTunnel & CameraControls"
+    },
+    {
+      "id": "13-goal-tunnel-objects",
+      "path": "components/home/GoalTunnelObjects.js",
+      "start": 35816,
+      "end": 37242,
+      "title": "GoalTunnelAstronauts, GoalWhiteTunnel, Ufx, PreUfx & GoalTunnelGlass"
+    },
+    {
+      "id": "14-footer-section",
+      "path": "components/ui/FooterSection.js",
+      "start": 37243,
+      "end": 37509,
+      "title": "NewsletterForm & FooterSection Component"
+    },
+    {
+      "id": "15-goal-section",
+      "path": "components/home/GoalSection.js",
+      "start": 37510,
+      "end": 38670,
+      "title": "GoalSectionRanges, GoalTunnelsBackground, GoalWhiteTunnelParticles, GoalWhiteTunnelStickers, GoalTunnels & GoalSection"
+    },
+    {
+      "id": "16-route-manager",
+      "path": "core/RouteManager.js",
+      "start": 38671,
+      "end": 39094,
+      "title": "ProjectDetailsScreen, Route & RouteManager"
+    },
+    {
+      "id": "17-header",
+      "path": "components/ui/Header.js",
+      "start": 39095,
+      "end": 39336,
+      "title": "Header Navigation Component"
+    },
+    {
+      "id": "18-project-details-page",
+      "path": "components/projects/ProjectDetailsPage.js",
+      "start": 39337,
+      "end": 40334,
+      "title": "ProjectDetailsData, UfxTextMesh, ProjectDetailsItem, ProjectDetailsItems, ProjectDetailsSection & ProjectPage"
+    },
+    {
+      "id": "19-home-page",
+      "path": "components/home/HomePage.js",
+      "start": 40335,
+      "end": 40507,
+      "title": "HomePageAudios & HomePage Component"
+    },
+    {
+      "id": "20-about-hero-subsystems",
+      "path": "components/about/AboutHeroSubsystems.js",
+      "start": 40508,
+      "end": 42145,
+      "title": "AboutHeroLight, LightField, ParticlesSimulation, Scatter, Rocks, Ground, Lines, Person, Fog, Halo, Faces & Letters"
+    },
+    {
+      "id": "21-about-hero",
+      "path": "components/about/AboutHero.js",
+      "start": 42146,
+      "end": 42354,
+      "title": "AboutHero Stage3D Component"
+    },
+    {
+      "id": "22-about-who-section",
+      "path": "components/about/AboutWhoSection.js",
+      "start": 42355,
+      "end": 43185,
+      "title": "AboutWhoLogo, WhoSubsectionWeAre, WhoSubsectionDetails, TextAnimationHelper, WhoSubsectionTeam & AboutWhoSection"
+    },
+    {
+      "id": "23-about-client-section",
+      "path": "components/about/AboutClientSection.js",
+      "start": 43186,
+      "end": 45148,
+      "title": "AboutClientSection, SVGParser & PostUfx"
+    },
+    {
+      "id": "24-about-page",
+      "path": "components/about/AboutPage.js",
+      "start": 45149,
+      "end": 45683,
+      "title": "AboutAwardSection, AboutCapabilitySection, AboutPageAudios & AboutPage Component"
+    },
+    {
+      "id": "25-projects-page",
+      "path": "components/projects/ProjectsPage.js",
+      "start": 45684,
+      "end": 45867,
+      "title": "ProjectsMainSection, ProjectsPageAudios & ProjectsPage Component"
+    },
+    {
+      "id": "26-playground-page",
+      "path": "components/playground/PlaygroundPage.js",
+      "start": 45868,
+      "end": 46490,
+      "title": "PlaygroundPage Component"
+    },
+    {
+      "id": "27-end-section-flip",
+      "path": "components/ui/EndSectionAndFlip.js",
+      "start": 46491,
+      "end": 47616,
+      "title": "FlipSim, FlipAnimation, EndSection, ScrollNavSection & PageExtraSections"
+    },
+    {
+      "id": "28-transition-page-manager",
+      "path": "components/ui/TransitionAndPageManager.js",
+      "start": 47617,
+      "end": 47993,
+      "title": "TransitionOverlay & PageManager"
+    },
+    {
+      "id": "29-scroll-postprocessing",
+      "path": "core/ScrollAndPostprocessing.js",
+      "start": 47994,
+      "end": 49315,
+      "title": "ScrollPane, ScrollManager, Postprocessing, Smaa, Bloom, ScreenPaintDistortion, Final & Fsr"
+    },
+    {
+      "id": "30-loaders-support",
+      "path": "core/LoadersAndSupport.js",
+      "start": 49316,
+      "end": 51303,
+      "title": "BufItem, EXRLoader, EXRItem, TextureItem, ThreeLoaderItem, GlPositionOffset & Support"
+    },
+    {
+      "id": "31-app-preloader-bootstrap",
+      "path": "App.js",
+      "start": 51304,
+      "end": 51886,
+      "title": "App, Preloader, Links, UI, FontItem & Main Render Loop Bootstrap"
+    }
+  ]
+}

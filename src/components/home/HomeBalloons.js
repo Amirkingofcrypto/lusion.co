@@ -1,0 +1,715 @@
+/**
+ * ============================================================================
+ * Lusion Modular Component: 05-home-balloons
+ * File: src/components/home/HomeBalloons.js
+ * Description: HomeBalloonsBackground, HomeBalloonsBody, HomeBalloonsPhysics, HomeBalloons (3D Crosses Hero Scene) & Visuals
+ * Original Engine Lines: 29212 - 29905
+ * ============================================================================
+ */
+class HomeBalloonsBackground {
+  container = new Object3D();
+  mesh = null;
+  activeRatio = 0;
+  clipOffset = new Vector2();
+  clipScale = new Vector2(1, 1);
+  constructor() {}
+  preInit() {}
+  init() {
+    let e = new BufferGeometry();
+    e.setAttribute("position", new BufferAttribute(new Float32Array([0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, -1, 1, 0, 1, 1, 0, 1, -1, 0, -1, -1, 0, -0.5, -0.5, 0, 1, -1, 1, -1, -1, 1, 1, 1, 1, -1, 1, 1]), 3));
+    e.setIndex(new BufferAttribute(new Uint16Array([3, 2, 7, 8, 9, 11, 11, 10, 8, 0, 5, 7, 0, 1, 5, 1, 4, 5, 1, 2, 4, 2, 3, 4, 5, 6, 7, 6, 3, 7]), 1));
+    this.mesh = new Mesh(e, new ShaderMaterial({
+      uniforms: Object.assign({
+        u_color0: {
+          value: new Color("#141515")
+        },
+        u_color1: {
+          value: new Color("#141515")
+        },
+        u_colorPaint: {
+          value: new Color("#1a2ffb")
+        },
+        u_aspect: {
+          value: 1
+        },
+        u_smooth: {
+          value: new Vector2(0, 1)
+        },
+        u_clipScale: {
+          value: this.clipScale
+        },
+        u_clipOffset: {
+          value: this.clipOffset
+        },
+        u_time: {
+          value: 0
+        },
+        u_activeRatio: {
+          value: 0
+        },
+        u_resolution: {
+          value: new Vector2()
+        },
+        u_screenPaintTexture: screenPaint.sharedUniforms.u_currPaintTexture
+      }, blueNoise.sharedUniforms),
+      vertexShader: vert$k,
+      fragmentShader: frag$o,
+      side: BackSide
+    }));
+    this.mesh.material.defines.NEIGHBOUR_COUNT = homeBalloons.NEIGHBOUR_COUNT + 1;
+    this.mesh.frustumCulled = false;
+    this.mesh.renderOrder = -1000;
+    this.container.add(this.mesh);
+  }
+  resize(e, t) {}
+  update(e) {
+    if (this.mesh) {
+      this.mesh.material.uniforms.u_activeRatio.value = this.activeRatio;
+      this.mesh.material.uniforms.u_time.value += e * 0.2;
+      this.mesh.material.uniforms.u_aspect.value = properties.width / properties.height;
+      this.mesh.material.uniforms.u_resolution.value.copy(properties.sharedUniforms.u_resolution.value);
+      this.mesh.material.uniforms.u_color0.value.set(COLORS$1[properties.balloonsColorIndex]);
+    }
+  }
+}
+const homeBalloonsBackground = new HomeBalloonsBackground();
+let random = math.getSeedRandomFn("balloonBody-25");
+const GRAVITY_FACTOR = 40;
+class HomeBalloonsBody {
+  position0 = new Vector3();
+  velocity0 = new Vector3();
+  position = new Vector3();
+  velocity = new Vector3();
+  gravityVel = new Vector3();
+  gravityAcc = new Vector3();
+  gravityForce = new Vector3();
+  angularVelocity = new Vector3();
+  torque = new Vector3();
+  quaternion = new Quaternion();
+  radius = 1;
+  mass = 1;
+  volume = 1;
+  density = 1;
+  friction = 1;
+  frictionTot = 0;
+  restitution = 1;
+  inertia = 0;
+  constructor(e = 1, t = 1, r = 0.5, n = 0.5, a = false) {
+    this.position0.set((random() - 0.5) * 12, (random() - 0.5) * 12, a ? 7 + random() : (random() - 0.5) * 6);
+    this.velocity0.copy(this.position0).multiplyScalar(-2);
+    this.position.copy(this.position0);
+    this.velocity.copy(this.velocity0);
+    this.radius = e * 1.05;
+    this.density = t;
+    this.friction = r;
+    this.restitution = n;
+    this.volume = Math.PI * this.radius * 1.333333;
+    this.mass = this.volume * this.radius * this.radius * this.density;
+    this.inertia = this.mass * this.radius * this.radius * 0.4;
+    this.reset();
+  }
+  reset() {
+    this.position.copy(this.position0);
+    this.velocity.copy(this.velocity0);
+  }
+  applyImpulse() {
+    this.gravityForce.copy(this.position).negate().multiplyScalar(10);
+    this.gravityAcc.copy(this.gravityForce);
+    this.gravityForce.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).multiplyScalar(80);
+    this.gravityAcc.add(this.gravityForce).multiplyScalar(1 / this.mass);
+    this.velocity.negate();
+    this.velocity.add(this.gravityAcc);
+  }
+  updateGravity(e) {
+    this.gravityForce.copy(this.position).negate().multiplyScalar(GRAVITY_FACTOR);
+    this.gravityAcc.copy(this.gravityForce).multiplyScalar(1 / this.mass);
+    this.gravityAcc.multiplyScalar(1 / (1 + this.frictionTot));
+    this.velocity.addScaledVector(this.gravityAcc, e);
+    this.frictionTot *= 0.5;
+  }
+  update(e) {
+    this.position.addScaledVector(this.velocity, e);
+    this.velocity.multiplyScalar(Math.pow(0.2, e));
+  }
+}
+const _mouse = new Vector3();
+const _mousePrev = new Vector3();
+const _vel = new Vector3();
+const _pos = new Vector3();
+const _v0$3 = new Vector3();
+const _v1$6 = new Vector3();
+const _p1$1 = new Vector3();
+const _normal = new Vector3();
+const _q$2 = new Quaternion();
+const _mousePushForce = new Vector3();
+const _mouseBA = new Vector3();
+class HomeBalloonsPhysics {
+  MOUSE_RADIUS = 0.025;
+  MOUSE_INFLUENCE = 0.1;
+  MOUSE_PUSH_FORCE = 0.12;
+  bodies = [];
+  isActive = true;
+  initWorld() {
+    for (let e = 0; e < homeBalloons.NUM_BALLOONS; e++) {
+      const t = homeBalloons.balloonList[e];
+      const {
+        radius: r,
+        density: n,
+        friction: a,
+        restitution: l,
+        isSemitransparent: c
+      } = t;
+      const u = new HomeBalloonsBody(r, n, a, l, c);
+      this.bodies.push(u);
+    }
+  }
+  reset() {
+    for (let e = 0; e < this.bodies.length; e++) {
+      this.bodies[e].reset();
+    }
+  }
+  update(e) {
+    if (!this.isActive) {
+      return;
+    }
+    _p1$1.set(input.mouseXY.x, input.mouseXY.y, 0.5);
+    _p1$1.unproject(properties.camera);
+    _p1$1.sub(properties.camera.position).normalize();
+    const r = (0 - properties.camera.position.z) / _p1$1.z;
+    _p1$1.multiplyScalar(r);
+    _mouse.copy(properties.camera.position).add(_p1$1);
+    _mousePushForce.copy(_mouse).sub(_mousePrev).multiplyScalar(this.MOUSE_PUSH_FORCE / e);
+    _mouseBA.copy(_mouse).sub(properties.camera.position);
+    let n = _mouseBA.lengthSq();
+    _mousePrev.copy(_mouse);
+    for (let a = 0; a < this.bodies.length; a++) {
+      const l = this.bodies[a];
+      l.updateGravity(e);
+      _vel.copy(l.velocity);
+      _pos.copy(l.position);
+      for (let p = a + 1; p < this.bodies.length; p++) {
+        const g = this.bodies[p];
+        _v1$6.copy(g.velocity);
+        _p1$1.copy(g.position);
+        _normal.copy(_pos).sub(_p1$1);
+        const v = _normal.length();
+        const _ = l.radius + g.radius;
+        if (v < _) {
+          const T = Math.sqrt(l.friction * g.friction, 2);
+          l.frictionTot += T;
+          g.frictionTot += T;
+          _normal.normalize();
+          _normal.multiplyScalar((v - _) * 0.5);
+          _pos.sub(_normal);
+          _p1$1.add(_normal);
+          _normal.normalize();
+          const M = _vel.dot(_normal);
+          const S = _v1$6.dot(_normal);
+          const b = l.mass;
+          const C = g.mass;
+          const w = l.restitution;
+          const R = g.restitution;
+          const E = (b * M + C * S - C * (M - S) * w) / (b + C);
+          const I = (b * M + C * S - b * (S - M) * R) / (b + C);
+          _vel.addScaledVector(_normal, (E - M) / (1 + T));
+          _v1$6.addScaledVector(_normal, (I - S) / (1 + T));
+          g.position.copy(_p1$1);
+          g.velocity.copy(_v1$6);
+        }
+      }
+      _v0$3.copy(_pos).sub(properties.camera.position);
+      let c = _v0$3.dot(_mouseBA) / n;
+      c = _v0$3.sub(_v1$6.copy(_mouseBA).multiplyScalar(c)).length() - l.radius - this.MOUSE_RADIUS;
+      if (c < 0) {
+        _v0$3.copy(_pos).sub(properties.camera.position).cross(_mouseBA).normalize();
+        _v1$6.copy(_mouseBA).cross(_v0$3).normalize();
+        _pos.sub(_v1$6.multiplyScalar(this.MOUSE_INFLUENCE * c));
+        _v1$6.multiplyScalar(-this.MOUSE_PUSH_FORCE / e);
+        _vel.add(_v1$6);
+        _vel.add(_mousePushForce);
+      }
+      let u = _pos.length();
+      if (u > 0) {
+        _v0$3.set(1, 1, 1).normalize();
+        let p = 1 - Math.abs(_v0$3.dot(_v1$6.copy(_pos).normalize()));
+        p *= e * math.fit(u, 0, 2, 0, 1) * 0.5;
+        p *= a % 2 * 2 - 1;
+        _q$2.setFromAxisAngle(_v0$3, p);
+        _v1$6.copy(_pos).applyQuaternion(_q$2).sub(_v0$3.copy(_pos));
+        _vel.add(_v1$6);
+      }
+      _v0$3.cross(_vel);
+      let f = _v0$3.length();
+      f /= l.inertia;
+      if (f > 0) {
+        _v0$3.normalize();
+        _q$2.setFromAxisAngle(_v0$3, f * e);
+        l.quaternion.premultiply(_q$2);
+      }
+      l.position.copy(_pos);
+      l.velocity.copy(_vel);
+      l.update(e);
+    }
+  }
+}
+const homeBalloonsPhysics = new HomeBalloonsPhysics();
+let _v$3 = new Vector3();
+let _color = new Color();
+let _blackWhiteToggle = 0;
+class HomeBalloons extends Stage3D {
+  NUM_BALLOONS = 0;
+  NEIGHBOUR_COUNT = -1;
+  container = new Object3D();
+  balloonList = [];
+  prePassMeshList = [];
+  _sortedBalloonList;
+  instancedPositionRadiusAttribute;
+  instancedPositionRadiusArray;
+  instancedNearPositionRadiusAttributes = [];
+  instancedNearPositionRadiusArrays = [];
+  ratio = 0;
+  cacheRT = null;
+  cacheRTBlur0 = null;
+  cacheRTBlur1 = null;
+  cacheRTBlur2 = null;
+  cacheRTBlur3 = null;
+  sharedUniforms = {
+    u_blurredTextures: {
+      value: []
+    },
+    u_blurredTextureSizes: {
+      value: []
+    },
+    u_matcap: {
+      value: null
+    },
+    u_lightPosition: {
+      value: new Vector3(10, 10, 5)
+    }
+  };
+  isReady = false;
+  lockedIndex = -1;
+  changeHomeHeroColorSignal = new MinSignal$2();
+  constructor() {
+    super({
+      properties: {
+        defaultCameraPosition: new Vector3(0, 0, 0),
+        defaultLookAtPosition: new Vector3(0, 0, 0),
+        cameraFov: 25,
+        clearAlpha: 0
+      }
+    });
+    this.NUM_BALLOONS = SPHERES_DATA.length;
+    this.cacheRT = fboHelper.createRenderTarget(1, 1);
+    this.cacheInterRT0 = fboHelper.createRenderTarget(1, 1);
+    this.cacheInterRT1 = fboHelper.createRenderTarget(1, 1);
+    this.cacheInterRT2 = fboHelper.createRenderTarget(1, 1);
+    this.cacheInterRT3 = fboHelper.createRenderTarget(1, 1);
+    this.cacheRTBlur0 = fboHelper.createRenderTarget(1, 1);
+    this.cacheRTBlur1 = fboHelper.createRenderTarget(1, 1);
+    this.cacheRTBlur2 = fboHelper.createRenderTarget(1, 1);
+    this.cacheRTBlur3 = fboHelper.createRenderTarget(1, 1);
+    this.sharedUniforms.u_blurredTextures.value.push(this.cacheRTBlur0.texture);
+    this.sharedUniforms.u_blurredTextures.value.push(this.cacheRTBlur1.texture);
+    this.sharedUniforms.u_blurredTextures.value.push(this.cacheRTBlur2.texture);
+    this.sharedUniforms.u_blurredTextures.value.push(this.cacheRTBlur3.texture);
+    this.sharedUniforms.u_blurredTextureSizes.value.push(new Vector2());
+    this.sharedUniforms.u_blurredTextureSizes.value.push(new Vector2());
+    this.sharedUniforms.u_blurredTextureSizes.value.push(new Vector2());
+    this.sharedUniforms.u_blurredTextureSizes.value.push(new Vector2());
+  }
+  preInit() {
+    properties.loader.add(settings.MODEL_PATH + "home/" + (browser$1.isMobile ? "cross_ld" : "cross") + ".buf", {
+      onLoad: e => {
+        this.geometry = e;
+      }
+    });
+    properties.loader.add(`${settings.TEXTURE_PATH}home/${browser$1.isMobile ? "matcap_ld" : "matcap"}.exr`, {
+      onLoad: e => {
+        e.minFilter = LinearFilter;
+        this.sharedUniforms.u_matcap.value = e;
+      }
+    });
+    homeBalloonsBackground.preInit();
+    this.changeHomeHeroColorSignal.add(() => {
+      properties.balloonsColorIndex += 1;
+      properties.balloonsColorIndex = math.mod(properties.balloonsColorIndex, COLORS$1.length);
+      _blackWhiteToggle = 1 - _blackWhiteToggle;
+      homeBalloonsPhysics.bodies.forEach(e => e.applyImpulse());
+    });
+  }
+  init() {
+    let e = math.getSeedRandomFn("balloon24");
+    this.NEIGHBOUR_COUNT = this.NUM_BALLOONS - 1;
+    let t = new ShaderMaterial({
+      uniforms: {},
+      vertexShader: prePassVert,
+      fragmentShader: prePassFrag,
+      colorWrite: false
+    });
+    let r = new ShaderMaterial({
+      uniforms: {},
+      vertexShader: prePassVert,
+      fragmentShader: prePassFrag,
+      side: BackSide,
+      colorWrite: false
+    });
+    for (let n = 0; n < this.NUM_BALLOONS; n++) {
+      let a = SPHERES_DATA[n];
+      let {
+        sssColor: l,
+        name: c,
+        color: u,
+        isColored: f,
+        sss: p,
+        isSemitransparent: g,
+        isRough: v,
+        radius: _,
+        density: T,
+        friction: M,
+        restitution: S,
+        isBlackWhite: b
+      } = a;
+      let C = this.geometry;
+      let w = new Vector4();
+      let R = Object.assign({
+        u_color: {
+          value: new Color()
+        },
+        u_bgColor: {
+          value: new Color()
+        },
+        u_sssColor: {
+          value: new Color()
+        },
+        u_matcap: this.sharedUniforms.u_matcap,
+        u_lightPosition: this.sharedUniforms.u_lightPosition,
+        u_sss: {
+          value: 0
+        },
+        u_roughness: {
+          value: v ? 0.8 : 0.1
+        },
+        u_selfPositionRadius: {
+          value: w
+        },
+        u_selfRotation: {
+          value: new Quaternion()
+        },
+        u_nearPositionRadiusList: {
+          value: []
+        },
+        u_nearRotationList: {
+          value: []
+        },
+        u_nearColorList: {
+          value: []
+        },
+        u_nearTransparencyLumaList: {
+          value: []
+        },
+        u_time: properties.sharedUniforms.u_time
+      }, blueNoise.sharedUniforms);
+      let E = new Mesh(C, new ShaderMaterial({
+        uniforms: R,
+        vertexShader: vert$l,
+        fragmentShader: frag$p
+      }));
+      let I = new Mesh(C, g ? r : t);
+      E._prePassMesh = I;
+      I._mesh = E;
+      this.prePassMeshList.push(I);
+      E.material.defines.NEIGHBOUR_COUNT = this.NEIGHBOUR_COUNT;
+      E.material.extensions.derivatives = true;
+      E.frustumCulled = false;
+      for (let k = 0; k < this.NEIGHBOUR_COUNT; k++) {
+        E.material.uniforms.u_nearPositionRadiusList.value[k] = new Vector4();
+        E.material.uniforms.u_nearRotationList.value[k] = new Quaternion();
+        E.material.uniforms.u_nearColorList.value[k] = new Color();
+        E.material.uniforms.u_nearTransparencyLumaList.value[k] = new Vector2();
+      }
+      E.position.set(e() * 2, e() * 2 - 1, e() * 2 - 1);
+      E.scale.setScalar(_);
+      I.scale.setScalar(_);
+      w.w = _;
+      this.add(E);
+      this.add(I);
+      let F = {
+        name: c,
+        mesh: E,
+        radius: _,
+        distance2: 0,
+        distanceFromCamera: 0,
+        selfPositionRadius: w,
+        color: u,
+        sss: p,
+        isRough: v,
+        isSemitransparent: g,
+        sssColor: l,
+        density: T,
+        friction: M,
+        restitution: S,
+        isColored: f,
+        isBlackWhite: b
+      };
+      if (g) {
+        E.onBeforeRender = this.onBeforeRenderFront.bind(this);
+        E.material.uniforms.u_sceneTexture = {
+          value: this.cacheRT.texture
+        };
+        E.material.uniforms.u_blurredTextures = this.sharedUniforms.u_blurredTextures;
+        E.material.uniforms.u_blurredTextureSizes = this.sharedUniforms.u_blurredTextureSizes;
+        E.material.defines.IS_SEMITRANSPARENT = true;
+        let k = E.clone();
+        k.material = new ShaderMaterial({
+          uniforms: Object.assign({
+            u_sceneTexture: E.material.uniforms.u_sceneTexture
+          }, R),
+          vertexShader: vert$l,
+          fragmentShader: frag$p,
+          side: 1
+        });
+        k.onBeforeRender = this.onBeforeRenderBack.bind(this);
+        k.material.defines.NEIGHBOUR_COUNT = this.NEIGHBOUR_COUNT;
+        k.material.defines.IS_SEMITRANSPARENT_BACK = true;
+        k.material.extensions.derivatives = true;
+        this.add(k);
+        F.meshBack = k;
+      }
+      this.balloonList.push(F);
+    }
+    this._sortedBalloonList = this.balloonList.slice(0);
+    homeBalloonsBackground.init();
+    this.add(homeBalloonsBackground.container);
+    homeBalloonsPhysics.initWorld();
+    taskManager.add(this);
+    this.isReady = true;
+  }
+  onBeforeRenderFront() {
+    let e = fboHelper.renderer;
+    let t = e.getRenderTarget();
+    fboHelper.clearMultisampleRenderTargetState();
+    fboHelper.copy(t.texture, this.cacheRT);
+    blur.blur(6, 0.5, this.cacheRT, this.cacheInterRT0, this.cacheRTBlur0, true);
+    blur.blur(6, 0.5, this.cacheRTBlur0, this.cacheInterRT1, this.cacheRTBlur1, true);
+    blur.blur(6, 0.5, this.cacheRTBlur1, this.cacheInterRT2, this.cacheRTBlur2, true);
+    blur.blur(6, 0.5, this.cacheRTBlur2, this.cacheInterRT3, this.cacheRTBlur3, true);
+    this.sharedUniforms.u_blurredTextureSizes.value[0].set(this.cacheRTBlur0.width, this.cacheRTBlur0.height);
+    this.sharedUniforms.u_blurredTextureSizes.value[1].set(this.cacheRTBlur1.width, this.cacheRTBlur1.height);
+    this.sharedUniforms.u_blurredTextureSizes.value[2].set(this.cacheRTBlur2.width, this.cacheRTBlur2.height);
+    this.sharedUniforms.u_blurredTextureSizes.value[3].set(this.cacheRTBlur3.width, this.cacheRTBlur3.height);
+    e.setRenderTarget(t);
+  }
+  onBeforeRenderBack() {
+    let e = fboHelper.renderer;
+    let t = e.getRenderTarget();
+    fboHelper.clearMultisampleRenderTargetState();
+    fboHelper.copy(t.texture, this.cacheRT);
+    e.setRenderTarget(t);
+  }
+  resize(e, t) {
+    this.cacheRT.setSize(e, t);
+    let r = e >> 1;
+    let n = t >> 1;
+    this.cacheRTBlur0.setSize(r, n);
+    r = r >> 1;
+    n = n >> 1;
+    this.cacheRTBlur1.setSize(r, n);
+    r = r >> 1;
+    n = n >> 1;
+    this.cacheRTBlur2.setSize(r, n);
+    r = r >> 1;
+    n = n >> 1;
+    this.cacheRTBlur3.setSize(r, n);
+    homeBalloonsBackground.resize(r, n);
+  }
+  _sortDist2(e, t) {
+    return e.distance2 - t.distance2;
+  }
+  _sortMeshDist2(e, t) {
+    return e._mesh.distance2 - t._mesh.distance2;
+  }
+  syncProperties(e) {
+    this.properties.defaultCameraPosition.z = math.fit(homePage.time, 0.3, 2, 25, 17.5, ease.backOut);
+    this.properties.cameraDollyZoomFovOffset = math.fit(homePage.time, 0.3, 3, 100, 0, ease.backOut);
+  }
+  updateColor() {
+    for (let e = 0; e < this.NUM_BALLOONS; e++) {
+      const t = this.balloonList[e];
+      if (t.isColored) {
+        const r = COLORS$1[properties.balloonsColorIndex];
+        if (t.isSemitransparent) {
+          _color.set(r);
+          _color.offsetHSL(0, 0, 0.3);
+          t.color = "#" + _color.getHexString();
+        } else {
+          t.color = r;
+        }
+      } else if (t.isBlackWhite) {
+        t.color = _blackWhiteToggle ? "#888" : "#eee";
+      }
+    }
+  }
+  updateUniforms() {
+    for (let e = 0; e < this.NUM_BALLOONS; e++) {
+      let t = this.balloonList[e];
+      let {
+        isSemitransparent: r,
+        color: n,
+        sss: a,
+        sssColor: l
+      } = t;
+      t.mesh.material.uniforms.u_bgColor.value.copy(properties.bgColor);
+      t.mesh.material.uniforms.u_color.value.set(n);
+      t.mesh.material.uniforms.u_sss.value = a;
+      t.mesh.material.uniforms.u_sssColor.value.set(l);
+      if (r) {
+        t.meshBack.material.uniforms.u_bgColor.value.copy(properties.bgColor);
+        t.meshBack.material.uniforms.u_color.value.set(n);
+        t.meshBack.material.uniforms.u_sss.value = a;
+        t.meshBack.material.uniforms.u_sssColor.value.set(l);
+      }
+    }
+  }
+  updateSorting() {
+    for (let e = 0; e < this.NUM_BALLOONS; e++) {
+      let t = this.balloonList[e];
+      for (let r = 0; r < this.NUM_BALLOONS; r++) {
+        let n = this._sortedBalloonList[r];
+        if (t == n) {
+          n.distance2 = 0;
+        } else {
+          n.distance2 = t.mesh.position.distanceToSquared(n.mesh.position);
+        }
+      }
+      this._sortedBalloonList.sort(this._sortDist2);
+      t.mesh.material.uniforms.u_selfRotation.value.copy(t.mesh.quaternion);
+      for (let r = 0; r < this.NEIGHBOUR_COUNT; r++) {
+        let n = this._sortedBalloonList[r + 1];
+        t.mesh.material.uniforms.u_nearPositionRadiusList.value[r].set(n.mesh.position.x, n.mesh.position.y, n.mesh.position.z, n.mesh.scale.x);
+        t.mesh.material.uniforms.u_nearRotationList.value[r].copy(n.mesh.quaternion);
+        _color.set(n.color);
+        t.mesh.material.uniforms.u_nearColorList.value[r].copy(_color);
+        t.mesh.material.uniforms.u_nearTransparencyLumaList.value[r].set(n.isSemitransparent ? 1 : 0, _color.r * 0.299 + _color.g * 0.587 + _color.b * 0.114);
+      }
+      t.mesh.getWorldPosition(_v$3);
+      _v$3.applyMatrix4(properties.camera.matrixWorldInverse);
+      t.distanceFromCamera = -_v$3.z;
+    }
+  }
+  updateRenderOrder() {
+    this._sortedBalloonList.sort((r, n) => r.distanceFromCamera < n.distanceFromCamera ? 1 : -1);
+    let e = [-1];
+    for (let r = 0; r < this.NUM_BALLOONS; r++) {
+      if (this._sortedBalloonList[r].isSemitransparent) {
+        e.push(r);
+      }
+    }
+    e.push(this.NUM_BALLOONS);
+    let t = 0;
+    for (let r = 0; r < this.NUM_BALLOONS; r++) {
+      let n = this._sortedBalloonList[r];
+      if (n.isSemitransparent) {
+        n.mesh.renderOrder = r * 3 + 2;
+        n.meshBack.renderOrder = r * 3;
+        t++;
+      } else {
+        n.mesh.renderOrder = (e[t + 1] - (r - e[t])) * 3 + 2;
+      }
+    }
+  }
+  updateTransformations() {
+    for (let e = 0; e < this.NUM_BALLOONS; e++) {
+      const t = this.balloonList[e];
+      const r = homeBalloonsPhysics.bodies[e];
+      t.mesh.position.copy(r.position);
+      t.mesh.quaternion.copy(r.quaternion);
+      t.selfPositionRadius.x = t.mesh.position.x;
+      t.selfPositionRadius.y = t.mesh.position.y;
+      t.selfPositionRadius.z = t.mesh.position.z;
+      if (t.isSemitransparent) {
+        t.meshBack.position.copy(t.mesh.position);
+        t.meshBack.rotation.copy(t.mesh.rotation);
+      }
+    }
+  }
+  update(e) {
+    const showShapes = !(window.LusionConfig && window.LusionConfig.hero && window.LusionConfig.hero.show3DShapes === false);
+    for (let i = 0; i < this.balloonList.length; i++) {
+      const b = this.balloonList[i];
+      if (b.mesh) b.mesh.visible = showShapes;
+      if (b.meshBack) b.meshBack.visible = showShapes;
+    }
+    for (let i = 0; i < this.prePassMeshList.length; i++) {
+      if (this.prePassMeshList[i]) this.prePassMeshList[i].visible = showShapes;
+    }
+    if (!showShapes) {
+      homeBalloonsBackground.update(e);
+      return;
+    }
+    if (this.isReady) {
+      homeBalloonsBackground.update(e);
+      homeBalloonsPhysics.update(e);
+      if (this.lockedIndex > -1) {
+        let t = this.balloonList[this.lockedIndex];
+        t.mesh.position.set(0, 0, 3);
+        if (t.meshBack) {
+          t.meshBack.position.copy(t.mesh.position);
+        }
+        t.mesh.rotation.set(properties.time, properties.time * 1.5, 0);
+      }
+      this.updateTransformations();
+      this.updateColor();
+      this.updateUniforms();
+      this.updateSorting();
+      this.updateRenderOrder();
+      this.prePassMeshList.sort(this._sortMeshDist2);
+      for (let t = 0; t < this.prePassMeshList.length; t++) {
+        let r = this.prePassMeshList[t];
+        r.position.copy(r._mesh.position);
+        r.rotation.copy(r._mesh.rotation);
+        r.renderOrder = -500 + t;
+      }
+    }
+  }
+}
+const homeBalloons = new HomeBalloons();
+class Visuals {
+  defaultStage3D = new Stage3D();
+  currentStage3D = null;
+  stage3DList = [];
+  preInit() {}
+  init() {}
+  start() {}
+  resize(e, t) {}
+  deactivateAll() {
+    for (let e = 0; e < this.stage3DList.length; e++) {
+      let t = this.stage3DList[e];
+      t.isActive = false;
+    }
+  }
+  syncProperties(e) {
+    this.currentStage3D = this.defaultStage3D;
+    for (let t = 0; t < this.stage3DList.length; t++) {
+      let r = this.stage3DList[t];
+      if (r.isActive === true) {
+        this.currentStage3D = r;
+        r.syncProperties(e);
+        for (let n in r.properties) {
+          properties[n] = r.properties[n];
+        }
+      } else {
+        r.isActive = false;
+      }
+    }
+  }
+  update(e) {
+    this.currentStage3D.update(e);
+    this.currentStage3D.visible = true;
+    for (let t = 0; t < this.stage3DList.length; t++) {
+      let r = this.stage3DList[t];
+      r.wasActive = r.isActive;
+    }
+  }
+}
+const visuals = new Visuals();
