@@ -12,13 +12,13 @@ window.LUSION_CONFIG = {
   heroBanner: {
     enabled: true,
     image: "/amir/assets/images/hero-banner.jpg",
-    eyebrow: "PORTFOLIO // CREATIVE DEVELOPER",
+    eyebrow: "AMIR // CREATIVE DEVELOPER",
     prefix: "I craft ",
     phrases: [
       "interactive 3D web experiences.",
-      "immersive brand storytelling.",
-      "high-craft digital products.",
-      "motion-driven interfaces.",
+      "AI-powered products & interfaces.",
+      "high-craft motion & WebGL worlds.",
+      "memorable digital brand stories.",
       "memorable web worlds."
     ],
     tags: ["3D & WebGL", "Motion Design", "Creative Dev"],

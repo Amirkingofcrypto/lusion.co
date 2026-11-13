@@ -4211,3 +4211,18 @@ html.is-white-bg #end-section-title-bottom-right-decoration {
     min-height: 2.4em;
   }
 }
+
+/* === AMIR Brand Wordmark === */
+.brand-wordmark {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  font-family: "Aeonik", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: currentColor;
+  mix-blend-mode: exclusion;
+}
