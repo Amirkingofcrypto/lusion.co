@@ -48,9 +48,9 @@ def build():
     )
     old_tags = [
         '<script type="module" src="/amir/_astro/hoisted.CUO_IjfL.js?v=patch1"></script>',
-        '<script src="/amir/src/config/lusion.config.js?v=modular1"></script><script type="module" src="/amir/_astro/hoisted.CUO_IjfL.js?v=modular1"></script>',
+        '<script src="/amir/src/config/lusion.config.js?v=modular2"></script><script type="module" src="/amir/_astro/hoisted.CUO_IjfL.js?v=modular2"></script>',
     ]
-    new_tag = '<script src="/amir/src/config/lusion.config.js?v=modular2"></script><script type="module" src="/amir/_astro/hoisted.CUO_IjfL.js?v=modular2"></script>'
+    new_tag = '<script src="/amir/src/config/lusion.config.js?v=modular3"></script><script type="module" src="/amir/_astro/hoisted.CUO_IjfL.js?v=modular3"></script>'
     updated_count = 0
     for hp in html_files:
         with open(hp, "r", encoding="utf-8") as f:

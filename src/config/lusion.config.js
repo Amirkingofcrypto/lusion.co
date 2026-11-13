@@ -8,7 +8,7 @@
 window.LusionConfig = window.LusionConfig || {
   hero: {
     // Set to false to remove/hide the 3D cross shapes inside the Hero scene
-    show3DShapes: true,
+    show3DShapes: false,
     enablePhysics: true
   },
   sections: {
