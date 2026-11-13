@@ -28123,7 +28123,6 @@ class FboHelper {
   }
 }
 const fboHelper = new FboHelper();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 04-task-page-stage-efx
@@ -29284,7 +29283,6 @@ class ScreenPaint {
   }
 }
 const screenPaint = new ScreenPaint();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 05-home-balloons
@@ -30000,7 +29998,6 @@ class Visuals {
   }
 }
 const visuals = new Visuals();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 06-audio-system
@@ -34502,7 +34499,6 @@ class HomeFeaturedSection {
 const homeFeaturedSection = new HomeFeaturedSection();
 const channelMixerFrag = `#define GLSLIFY 1
 uniform sampler2D u_texture;uniform vec4 u_channelMixerR;uniform vec4 u_channelMixerG;uniform vec4 u_channelMixerB;uniform vec4 u_channelMixerA;varying vec2 v_uv;void main(){vec4 color=texture2D(u_texture,v_uv);gl_FragColor=vec4(dot(color,u_channelMixerR),dot(color,u_channelMixerG),dot(color,u_channelMixerB),dot(color,u_channelMixerA));}`;
-
 /**
  * ============================================================================
  * Lusion Modular Component: 12-noise-camera-controls
@@ -35981,7 +35977,6 @@ let _matrixWorld$1 = new Matrix4();
 let _matrixWorldInverse$1 = new Matrix4();
 let _projectionMatrix$1 = new Matrix4();
 let _perspectiveCamera = new PerspectiveCamera();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 13-goal-tunnel-objects
@@ -37419,7 +37414,6 @@ function jsonp(o, e, t) {
 const jsonp$1 = getDefaultExportFromCjs(jsonp_1);
 const MAILCHIMP_URL = "https://lusion.us20.list-manage.com/subscribe/post?u=ea813c53ac6d7a0b76f2e36a1&amp;id=44b41b41bf&amp;v_id=4233&amp;f_id=001e18e7f0";
 const getAjaxUrl = o => o.replace("/post?", "/post-json?");
-
 /**
  * ============================================================================
  * Lusion Modular Component: 14-footer-section
@@ -39300,7 +39294,6 @@ class RouteManager {
 const routeManager = new RouteManager();
 let _c1$1 = new Color();
 let _c2$1 = new Color();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 17-header
@@ -40558,7 +40551,6 @@ class ProjectPage extends Page {
 }
 const projectPage = new ProjectPage();
 let _brokenGlassStep = 0;
-
 /**
  * ============================================================================
  * Lusion Modular Component: 19-home-page
@@ -42387,7 +42379,6 @@ class AboutHeroLetters {
   update(e) {}
 }
 const aboutHeroLetters = new AboutHeroLetters();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 21-about-hero
@@ -45417,7 +45408,6 @@ class PostUfx extends Ufx {
   renderOrder = 100;
 }
 const postUfx = new PostUfx();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 24-about-page
@@ -47921,7 +47911,6 @@ class PageExtraSections {
 }
 const pageExtraSections = new PageExtraSections();
 let LOADING_RECTS = [1, 1, 1, 3, 2, 4, 2, 1, 6, 2, 1, 2, 7, 1, 1, 1, 7, 4, 1, 1, 8, 2, 1, 2, 11, 2, 1, 3, 13, 2, 1, 3, 12, 1, 1, 1, 16, 1, 2, 1, 18, 2, 1, 2, 16, 4, 2, 1, 22, 1, 1, 4, 26, 1, 1, 4, 27, 1, 1, 1, 28, 2, 1, 3, 32, 1, 1, 1, 33, 3, 1, 1, 31, 1, 1, 3, 32, 4, 2, 1];
-
 /**
  * ============================================================================
  * Lusion Modular Component: 28-transition-page-manager
@@ -48307,7 +48296,6 @@ class PageManager {
   _log(e) {}
 }
 const pagesManager = new PageManager();
-
 /**
  * ============================================================================
  * Lusion Modular Component: 29-scroll-postprocessing
@@ -49638,7 +49626,6 @@ class Fsr extends PostEffect {
   }
 }
 const XHRItem = properties.loader.ITEM_CLASSES.xhr;
-
 /**
  * ============================================================================
  * Lusion Modular Component: 30-loaders-support

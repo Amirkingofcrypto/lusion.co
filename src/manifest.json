@@ -19,25 +19,59 @@
       "title": "Browser Detection, Settings, Properties, QuickLoader, Howler & SplitType"
     },
     {
-      "id": "03-input-tween-fbo",
-      "path": "core/InputTweenFbo.js",
-      "start": 27258,
-      "end": 28062,
-      "title": "SecondOrderDynamics, Input Controller, ScrollDomRange, Tween & FboHelper"
+      "path": "core/Input.js",
+      "description": "SecondOrderDynamics & Input",
+      "lines": 355
     },
     {
-      "id": "04-task-page-stage-efx",
-      "path": "core/StageAndEffects.js",
-      "start": 28063,
-      "end": 29211,
-      "title": "Task, TaskManager, Page Base Class, Ease, Stage3D, Blur, ShaderHelper, BlueNoise & ScreenPaint"
+      "path": "core/ScrollDomRangeAndTween.js",
+      "description": "ScrollDomRange & Tween",
+      "lines": 130
     },
     {
-      "id": "05-home-balloons",
+      "path": "core/FboHelper.js",
+      "description": "FboHelper",
+      "lines": 328
+    },
+    {
+      "path": "core/TaskManager.js",
+      "description": "Task & TaskManager",
+      "lines": 155
+    },
+    {
+      "path": "core/Page.js",
+      "description": "Base Page Class",
+      "lines": 70
+    },
+    {
+      "path": "core/Ease.js",
+      "description": "Ease Curves",
+      "lines": 319
+    },
+    {
+      "path": "core/Stage3DAndShaders.js",
+      "description": "Stage3D, Blur, ShaderHelper, BlueNoise",
+      "lines": 189
+    },
+    {
+      "path": "core/ScreenPaint.js",
+      "description": "ScreenPaint & Spheres Data",
+      "lines": 427
+    },
+    {
+      "path": "components/home/HomeBalloonsBackground.js",
+      "description": "HomeBalloonsBackground",
+      "lines": 75
+    },
+    {
+      "path": "components/home/HomeBalloonsPhysics.js",
+      "description": "HomeBalloonsBody & HomeBalloonsPhysics",
+      "lines": 180
+    },
+    {
       "path": "components/home/HomeBalloons.js",
-      "start": 29212,
-      "end": 29905,
-      "title": "HomeBalloonsBackground, HomeBalloonsBody, HomeBalloonsPhysics, HomeBalloons (3D Crosses Hero Scene) & Visuals"
+      "description": "HomeBalloons & Visuals",
+      "lines": 460
     },
     {
       "id": "06-audio-system",
@@ -75,25 +109,44 @@
       "title": "HomeReelSection Component & DomHelper"
     },
     {
-      "id": "11-home-featured-section",
+      "path": "components/home/ProjectItem.js",
+      "description": "ProjectItem & ProjectItemList",
+      "lines": 369
+    },
+    {
       "path": "components/home/HomeFeaturedSection.js",
-      "start": 33865,
-      "end": 34345,
-      "title": "ProjectItem, ProjectItemList & HomeFeaturedSection Component"
+      "description": "HomeFeaturedSection",
+      "lines": 120
     },
     {
-      "id": "12-noise-camera-controls",
-      "path": "core/CameraAndNoise.js",
-      "start": 34346,
-      "end": 35815,
-      "title": "TextureHelper, Simple1DNoise, BrownianMotion, PostEffect, GoalTunnelEfx, GoalBlackTunnel & CameraControls"
+      "path": "core/NoiseAndTunnelEfx.js",
+      "description": "TextureHelper, Simple1DNoise, BrownianMotion, PostEffect, GoalTunnelEfx, GoalBlackTunnel",
+      "lines": 527
     },
     {
-      "id": "13-goal-tunnel-objects",
-      "path": "components/home/GoalTunnelObjects.js",
-      "start": 35816,
-      "end": 37242,
-      "title": "GoalTunnelAstronauts, GoalWhiteTunnel, Ufx, PreUfx & GoalTunnelGlass"
+      "path": "core/CameraControls.js",
+      "description": "OrbitControls, DeviceOrientationControls, CameraControls & Astronaut Shaders",
+      "lines": 951
+    },
+    {
+      "path": "components/home/GoalTunnelAstronauts.js",
+      "description": "GoalTunnelAstronauts",
+      "lines": 723
+    },
+    {
+      "path": "components/home/GoalWhiteTunnel.js",
+      "description": "GoalWhiteTunnel",
+      "lines": 92
+    },
+    {
+      "path": "components/home/GoalTunnelGlass.js",
+      "description": "Ufx, PreUfx & GoalTunnelGlass",
+      "lines": 192
+    },
+    {
+      "path": "components/home/MailchimpUtils.js",
+      "description": "Email Validation, JSONP & Mailchimp Utils",
+      "lines": 430
     },
     {
       "id": "14-footer-section",
@@ -110,11 +163,14 @@
       "title": "GoalSectionRanges, GoalTunnelsBackground, GoalWhiteTunnelParticles, GoalWhiteTunnelStickers, GoalTunnels & GoalSection"
     },
     {
-      "id": "16-route-manager",
+      "path": "core/ProjectDetailsScreen.js",
+      "description": "ProjectDetailsScreen",
+      "lines": 239
+    },
+    {
       "path": "core/RouteManager.js",
-      "start": 38671,
-      "end": 39094,
-      "title": "ProjectDetailsScreen, Route & RouteManager"
+      "description": "Route & RouteManager",
+      "lines": 193
     },
     {
       "id": "17-header",
@@ -124,11 +180,24 @@
       "title": "Header Navigation Component"
     },
     {
-      "id": "18-project-details-page",
-      "path": "components/projects/ProjectDetailsPage.js",
-      "start": 39337,
-      "end": 40334,
-      "title": "ProjectDetailsData, UfxTextMesh, ProjectDetailsItem, ProjectDetailsItems, ProjectDetailsSection & ProjectPage"
+      "path": "components/projects/ProjectDetailsData.js",
+      "description": "ProjectDetailsData & UfxTextMesh",
+      "lines": 175
+    },
+    {
+      "path": "components/projects/ProjectDetailsItem.js",
+      "description": "ProjectDetailsItem & ProjectDetailsItems",
+      "lines": 365
+    },
+    {
+      "path": "components/projects/ProjectDetailsSection.js",
+      "description": "ProjectDetailsSection",
+      "lines": 325
+    },
+    {
+      "path": "components/projects/ProjectPage.js",
+      "description": "ProjectPageAudios & ProjectPage",
+      "lines": 141
     },
     {
       "id": "19-home-page",
@@ -138,11 +207,19 @@
       "title": "HomePageAudios & HomePage Component"
     },
     {
-      "id": "20-about-hero-subsystems",
-      "path": "components/about/AboutHeroSubsystems.js",
-      "start": 40508,
-      "end": 42145,
-      "title": "AboutHeroLight, LightField, ParticlesSimulation, Scatter, Rocks, Ground, Lines, Person, Fog, Halo, Faces & Letters"
+      "path": "components/about/AboutHeroLightsAndParticles.js",
+      "description": "AboutHeroLight, LightField, ParticlesSimulation, Scatter, Prepass, Particles",
+      "lines": 618
+    },
+    {
+      "path": "components/about/AboutHeroTerrainAndPerson.js",
+      "description": "AboutHeroRocks, Ground, Lines, Person, Fog, Halo",
+      "lines": 686
+    },
+    {
+      "path": "components/about/AboutHeroFacesAndLetters.js",
+      "description": "AboutHeroFaces, HeroEfx, Letters",
+      "lines": 342
     },
     {
       "id": "21-about-hero",
@@ -159,11 +236,19 @@
       "title": "AboutWhoLogo, WhoSubsectionWeAre, WhoSubsectionDetails, TextAnimationHelper, WhoSubsectionTeam & AboutWhoSection"
     },
     {
-      "id": "23-about-client-section",
       "path": "components/about/AboutClientSection.js",
-      "start": 43186,
-      "end": 45148,
-      "title": "AboutClientSection, SVGParser & PostUfx"
+      "description": "AboutClientSection",
+      "lines": 147
+    },
+    {
+      "path": "components/about/SVGParser.js",
+      "description": "SVGParser",
+      "lines": 1820
+    },
+    {
+      "path": "components/about/PostUfx.js",
+      "description": "PostUfx",
+      "lines": 4
     },
     {
       "id": "24-about-page",
@@ -187,25 +272,44 @@
       "title": "PlaygroundPage Component"
     },
     {
-      "id": "27-end-section-flip",
-      "path": "components/ui/EndSectionAndFlip.js",
-      "start": 46491,
-      "end": 47616,
-      "title": "FlipSim, FlipAnimation, EndSection, ScrollNavSection & PageExtraSections"
+      "path": "components/ui/FlipSim.js",
+      "description": "FlipSim Physics",
+      "lines": 540
     },
     {
-      "id": "28-transition-page-manager",
-      "path": "components/ui/TransitionAndPageManager.js",
-      "start": 47617,
-      "end": 47993,
-      "title": "TransitionOverlay & PageManager"
+      "path": "components/ui/FlipAnimation.js",
+      "description": "FlipAnimation",
+      "lines": 309
     },
     {
-      "id": "29-scroll-postprocessing",
-      "path": "core/ScrollAndPostprocessing.js",
-      "start": 47994,
-      "end": 49315,
-      "title": "ScrollPane, ScrollManager, Postprocessing, Smaa, Bloom, ScreenPaintDistortion, Final & Fsr"
+      "path": "components/ui/EndSection.js",
+      "description": "EndSection",
+      "lines": 193
+    },
+    {
+      "path": "components/ui/ScrollNavAndExtraSections.js",
+      "description": "ScrollNavSection & PageExtraSections",
+      "lines": 92
+    },
+    {
+      "path": "components/ui/TransitionOverlay.js",
+      "description": "TransitionOverlay",
+      "lines": 144
+    },
+    {
+      "path": "components/ui/PageManager.js",
+      "description": "PageManager",
+      "lines": 241
+    },
+    {
+      "path": "core/ScrollManager.js",
+      "description": "ScrollPane & ScrollManager",
+      "lines": 328
+    },
+    {
+      "path": "core/Postprocessing.js",
+      "description": "Postprocessing, SMAA, Bloom, ScreenPaintDistortion, Final, FSR",
+      "lines": 1002
     },
     {
       "id": "30-loaders-support",
@@ -221,5 +325,9 @@
       "end": 51886,
       "title": "App, Preloader, Links, UI, FontItem & Main Render Loop Bootstrap"
     }
-  ]
+  ],
+  "styles": [
+    "styles/main.css"
+  ],
+  "totalModules": 57
 }
