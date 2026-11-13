@@ -230,6 +230,9 @@ class AboutHeroGround {
       fragmentShader: frag$b
     }));
     this.mesh.material.defines.LIGHT_SHADOW_SAMPLE_COUNT = 8;
+    if (!this.geometry) {
+      this.geometry = new BufferGeometry();
+    }
     this.groundMesh = new Mesh(this.geometry, new ShaderMaterial({
       uniforms: Object.assign({
         u_texture: {

@@ -12,11 +12,19 @@
       "title": "Three.js r158 Core, Math, Geometries, Shaders & WebGLRenderer"
     },
     {
-      "id": "02-settings-properties",
-      "path": "core/SettingsAndProperties.js",
-      "start": 25771,
-      "end": 27257,
-      "title": "Browser Detection, Settings, Properties, QuickLoader, Howler & SplitType"
+      "path": "core/BrowserAndSettings.js",
+      "description": "Browser Detection & Global Settings",
+      "lines": 130
+    },
+    {
+      "path": "core/QuickLoader.js",
+      "description": "QuickLoader Asset Queue & Item Types",
+      "lines": 980
+    },
+    {
+      "path": "core/PropertiesAndWheel.js",
+      "description": "Global Properties & NormalizeWheel",
+      "lines": 385
     },
     {
       "path": "core/Input.js",
@@ -74,11 +82,14 @@
       "lines": 460
     },
     {
-      "id": "06-audio-system",
+      "path": "core/SplitTextHelper.js",
+      "description": "SplitText DOM Text Splitting Helper",
+      "lines": 897
+    },
+    {
       "path": "core/AudioSystem.js",
-      "start": 29906,
-      "end": 31238,
-      "title": "AudioGroup, AudioItem, GlobalAudios & Audios"
+      "description": "AudioGroup, AudioItem, GlobalAudios & Audios",
+      "lines": 444
     },
     {
       "id": "07-home-hero-section",
@@ -95,11 +106,14 @@
       "title": "UfxMesh & Line (3D Procedural Ribbon Lines)"
     },
     {
-      "id": "09-video-overlay",
+      "path": "components/ui/VimeoPlayer.js",
+      "description": "Vimeo Embed & Player SDK",
+      "lines": 955
+    },
+    {
       "path": "components/ui/VideoOverlay.js",
-      "start": 32188,
-      "end": 33349,
-      "title": "Vimeo Player SDK, TimingSrcConnector & VideoOverlay Component"
+      "description": "VideoOverlay Controller",
+      "lines": 215
     },
     {
       "id": "10-home-reel-section",
@@ -156,11 +170,14 @@
       "title": "NewsletterForm & FooterSection Component"
     },
     {
-      "id": "15-goal-section",
+      "path": "components/home/GoalTunnelsScene.js",
+      "description": "GoalSectionRanges, Background, Particles, Stickers & GoalTunnels",
+      "lines": 709
+    },
+    {
       "path": "components/home/GoalSection.js",
-      "start": 37510,
-      "end": 38670,
-      "title": "GoalSectionRanges, GoalTunnelsBackground, GoalWhiteTunnelParticles, GoalWhiteTunnelStickers, GoalTunnels & GoalSection"
+      "description": "HomeGoalSectionTunnelTitle & GoalSection",
+      "lines": 462
     },
     {
       "path": "core/ProjectDetailsScreen.js",
@@ -312,11 +329,19 @@
       "lines": 1002
     },
     {
-      "id": "30-loaders-support",
-      "path": "core/LoadersAndSupport.js",
-      "start": 49316,
-      "end": 51303,
-      "title": "BufItem, EXRLoader, EXRItem, TextureItem, ThreeLoaderItem, GlPositionOffset & Support"
+      "path": "core/BufItem.js",
+      "description": "BufItem Binary Geometry Loader",
+      "lines": 140
+    },
+    {
+      "path": "core/EXRLoader.js",
+      "description": "Inflate & EXRLoader + EXRItem",
+      "lines": 1708
+    },
+    {
+      "path": "core/TextureAndSupport.js",
+      "description": "TextureItem, ThreeLoaderItem, GlPositionOffset & Support",
+      "lines": 148
     },
     {
       "id": "31-app-preloader-bootstrap",
@@ -329,5 +354,13 @@
   "styles": [
     "styles/main.css"
   ],
-  "totalModules": 57
+  "totalModules": 64,
+  "partials": [
+    "partials/header.html",
+    "partials/menu.html",
+    "partials/end-section.html"
+  ],
+  "data": [
+    "data/projects.json"
+  ]
 }

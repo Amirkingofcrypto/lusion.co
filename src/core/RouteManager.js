@@ -28,6 +28,7 @@ class Route {
     if (!t) {
       console.error("route not found for path: " + this.path);
       window.location.href = BASE_PATH ? window.location.origin + BASE_PATH + "/" : window.location.origin;
+      return;
     }
     this.target = t.target;
   }
