@@ -114,23 +114,38 @@ class TransitionOverlay {
           u.fill();
           u.restore();
         } else {
-          u.translate(-l, l * 1.5);
+          // Creative Pixel-Assembling AMIR Preloader
+          const AMIR_GRID = [
+            " ███  █   █ ███ ████ ",
+            "█   █ ██ ██  █  █   █",
+            "█████ █ █ █  █  ████ ",
+            "█   █ █   █  █  █  █ ",
+            "█   █ █   █ ███ █   █"
+          ];
+          const cell = 0.24;
+          const cols = 21;
+          const rows = 5;
+          const totalW = cols * cell;
+          const totalH = rows * cell;
+          const assemble = ease.expoOut(Math.min(1, Math.max(0, l)));
+          const scatter = 1 - assemble;
           u.save();
-          u.translate(0.5, -0.5);
-          u.rotate(l * Math.PI * 0.5);
-          u.globalCompositeOperation = "xor";
-          u.fillRect(-3, 0, 3, 1);
-          u.globalCompositeOperation = "source-over";
           u.globalAlpha = 1 - f;
-          u.fillRect(-3, 0, 3, 1);
-          u.restore();
-          u.save();
-          u.translate(0.5, -0.5);
-          u.globalCompositeOperation = "xor";
-          u.fillRect(0, 0, 2, 1);
-          u.globalCompositeOperation = "source-over";
-          u.globalAlpha = 1 - f;
-          u.fillRect(0, 0, 2, 1);
+          let idx = 0;
+          for (let ry = 0; ry < rows; ry++) {
+            for (let cx = 0; cx < cols; cx++) {
+              if (AMIR_GRID[ry][cx] !== "█") continue;
+              idx++;
+              // Deterministic pseudo-random scatter offset per pixel
+              const ang = idx * 2.3999632;
+              const dist = (1.6 + (idx % 5) * 0.55) * scatter;
+              const px = -totalW * 0.5 + cx * cell + Math.cos(ang) * dist;
+              const py = -totalH * 0.5 + ry * cell + Math.sin(ang) * dist;
+              const s = cell * (0.86 + 0.14 * assemble);
+              u.fillStyle = "#ffffff";
+              u.fillRect(px, py, s, s);
+            }
+          }
           u.restore();
         }
       }
