@@ -8,9 +8,15 @@
       "DRKN"
     ],
     "assets": [
+      "connected-banner.webp",
+      "desktop-workspace.webp",
+      "evidence-banner.webp",
       "home.webp",
+      "mobile-workspace.webp",
+      "research-banner.webp",
       "home_depth.webp"
-    ]
+    ],
+    "description": "A clearer way to read the market."
   },
   {
     "slug": "of_the_oak",

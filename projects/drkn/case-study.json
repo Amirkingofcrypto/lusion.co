@@ -1,0 +1,94 @@
+{
+  "title": "DRKN",
+  "headline": "A clearer way to read the market.",
+  "intro": [
+    "DRKN is a crypto research product built around a simple question: how can a trader understand a complex market without having to navigate an equally complex interface? It brings conversational research, chart patterns, market context, account connections and a Telegram assistant into one connected experience.",
+    "My role spans product direction, visual identity, interaction design, frontend development and backend integration. The challenge was to connect the expressive qualities of a crafted digital brand with the practical discipline of a research tool: readable information, explicit assumptions and consistent behavior across desktop, mobile and Telegram.",
+    "The result is an evolving product rather than a static concept. The interface is live, background workers prepare market-pattern results, and research outputs distinguish observed evidence from conditional scenarios. This case study follows the thinking behind that system, the visual language that holds it together, and the engineering choices that support it."
+  ],
+  "facts": [
+    ["Role", "Product direction · design · engineering"],
+    ["Platforms", "Web · mobile · Telegram"],
+    ["Focus", "Research · market context · account risk"],
+    ["Status", "Live product · ongoing development"]
+  ],
+  "chapters": [
+    {
+      "id": "challenge", "title": "Making complexity useful", "eyebrow": "01 / THE CHALLENGE",
+      "paragraphs": [
+        "Market information is abundant; a usable sequence of decisions is harder to find. A price chart can sit beside a headline, a derivatives metric and an order-book snapshot without explaining how they relate. More panels do not automatically produce a clearer picture. The starting point for DRKN was to reduce that fragmentation while keeping the underlying evidence available.",
+        "The product therefore uses progressive disclosure. A user first sees a focused conversation, a small set of useful starting points or a concise market card. Supporting levels, source context and additional detail are available when needed. The design aims to make the next action understandable without pretending that uncertainty has disappeared."
+      ],
+      "image": "research-banner", "caption": "Original brand illustration: a frame for research, shaped in smoked glass, mint light and copper."
+    },
+    {
+      "id": "identity", "title": "A visual identity with a warmer edge", "eyebrow": "02 / DESIGN SYSTEM",
+      "paragraphs": [
+        "The visual system combines obsidian surfaces, soft mint and a warm copper accent. Mint gives the product its recognizable identity; copper introduces contrast in selected labels, navigation states and editorial details. The palette creates hierarchy without turning every component into an alert. Sculptural glass and metal imagery gives the brand an expressive layer beyond conventional financial dashboards.",
+        "Inside the product, typography, spacing and component density are deliberately calmer. Icons are vector artwork rather than text symbols that can change into emoji on a phone. Forms, account cards, menus and research views share the same visual foundations. The landing page can be cinematic, while the workspace stays focused on reading, asking and understanding."
+      ],
+      "image": "home", "caption": "DRKN brand cover. A sculptural identity carried across the web product and Telegram assistant."
+    },
+    {
+      "id": "workspace", "title": "A workspace that begins with a conversation", "eyebrow": "03 / PRODUCT EXPERIENCE",
+      "paragraphs": [
+        "The chat workspace is the product's primary entry into research. Instead of asking a new user to choose from a wall of tools, it offers a readable prompt, a compact composer and a few relevant suggestions. Navigation separates conversation and markets from supporting account and connection tasks. More detailed actions remain available without occupying the center of the experience.",
+        "Research messages are structured around what can be observed, what remains conditional and what would invalidate a scenario. Charts, source information, levels and risk context belong to the same reading flow. The goal is to help someone ask a better follow-up question rather than treat a generated paragraph as an unquestionable trading instruction."
+      ],
+      "image": "desktop-workspace", "caption": "Actual public guest workspace captured from the live product. No account credentials or private user data are shown."
+    },
+    {
+      "id": "mobile", "title": "Designed for the phone, not squeezed into it", "eyebrow": "04 / MOBILE INTERACTION",
+      "paragraphs": [
+        "The mobile experience needed its own layout decisions. A narrow screen changes the relationship between navigation, suggestions, the conversation and the keyboard. DRKN uses a compact header, a single hamburger entry and a composer that responds to the available viewport. Suggested starting points remain close to the input rather than becoming a separate dashboard to navigate.",
+        "The work also includes the less visible details of mobile use: safe areas, readable form text, touch-sized controls and stable initial presentation. A lightweight skeleton reserves the workspace while critical styles become available. Persian and English require deliberate direction and text handling, particularly around email addresses, market symbols and numerical research data."
+      ],
+      "image": "mobile-workspace", "caption": "Actual mobile guest interface. The layout prioritizes the composer, readable suggestions and one navigation entry."
+    },
+    {
+      "id": "evidence", "title": "From raw information to an explicit scenario", "eyebrow": "05 / RESEARCH PIPELINE",
+      "paragraphs": [
+        "The evidence-led web research path combines validated closed candles, technical indicators, higher-timeframe context and optional derivatives information. News and executed order flow add context where coverage is available. These inputs have different time horizons and meanings: a short flow window cannot establish a daily trend, and displayed order-book liquidity is not the same thing as completed trades.",
+        "That distinction shapes the output. Missing or stale inputs are identified; conflicting evidence can prevent entry eligibility. Conditional scenarios expose reference levels, invalidation and cost assumptions instead of presenting an invented probability of success. Coverage metadata describes which evidence is available. It is not a confidence percentage, and the system does not claim that a complete-looking report guarantees a profitable outcome."
+      ],
+      "image": "evidence-banner", "caption": "Concept illustration of the evidence pipeline. The artwork is not a chart, performance result or live-data visualization."
+    },
+    {
+      "id": "patterns", "title": "Market discovery that keeps working in the background", "eyebrow": "06 / MARKET PATTERNS",
+      "paragraphs": [
+        "Market-pattern discovery runs independently of a visitor opening the page. A dedicated worker maintains prepared results across a selected liquid-market universe and several timeframes. The frontend reads those results, so changing a filter or returning to the workspace does not trigger a new round of heavy candle retrieval and geometric analysis.",
+        "The visible page stays selective: currencies without a valid detected pattern do not fill the grid. Search, pattern type and direction help narrow the remaining results. Patterns can be forming or confirmed, with their geometry and limitations available on demand. The worker revisits structures as closed candles arrive, updates the active set and removes observations that are no longer valid or fresh."
+      ]
+    },
+    {
+      "id": "telegram", "title": "One product across the web and Telegram", "eyebrow": "07 / CONNECTED EXPERIENCE",
+      "paragraphs": [
+        "The Telegram assistant extends DRKN into a place users already visit. A concise welcome, a coherent visual identity and contextual actions help connect the bot to the broader product. The aim is continuity: someone can discover a tool in Telegram and continue into the web workspace without feeling that they have entered an unrelated application.",
+        "Account linking is part of that continuity. Verified Telegram identity, expiring single-use links and browser-bound provider sign-in support the connection flow where configured. Adding an email to an existing Telegram-based identity preserves that account's identifier. Distinct existing accounts are not silently merged, because an apparently convenient shortcut should not put history or account ownership at risk."
+      ],
+      "image": "connected-banner", "caption": "Original concept artwork for continuity between a larger research workspace and a smaller, always-nearby interface."
+    },
+    {
+      "id": "account", "title": "An account area that earns its screen space", "eyebrow": "08 / ACCOUNT & ENGAGEMENT",
+      "paragraphs": [
+        "The account area brings identity, credits, exchange connections and session information together without repeating the same settings in several menus. A compact profile summary introduces the person and their available credits. Security starts with the current device; deeper session information is disclosed when requested. The interface should communicate what can be managed, not overwhelm the user with decorative statistics.",
+        "The credit system connects usage with return visits and participation. Users can see their balance, understand rewards and inspect activity instead of encountering an unexplained limit only after making a request. The design treats these mechanics as part of the product experience, keeping balances and reward states tied to real account data rather than a static promotional counter."
+      ]
+    },
+    {
+      "id": "engineering", "title": "Craft supported by operational discipline", "eyebrow": "09 / ENGINEERING & VALIDATION",
+      "paragraphs": [
+        "DRKN's architecture separates the HTTP application, market-data services, research logic and background scanning. That separation lets the interface read prepared information while workers continue their own schedules. Publication, cache behavior and recovery matter as much as the first screenshot: a refined visual design is of little use if an old browser tab loads incompatible assets or a phone sees unstyled content before initialization finishes.",
+        "Research validation follows the same principle. Closed-bar calculations, explicit execution-cost assumptions and chronological baseline evaluation make limitations inspectable. A baseline is not the full research engine, and a historical experiment is not proof of future accuracy. These boundaries are documented rather than replaced by an unsupported performance claim. The product continues to evolve through implementation, observation and testing."
+      ]
+    },
+    {
+      "id": "outcome", "title": "A product language, not just a collection of screens", "eyebrow": "10 / THE DIRECTION",
+      "paragraphs": [
+        "The work on DRKN connects brand expression, a focused conversational interface and the underlying behavior of a research system. The sculptural imagery establishes character; the restrained workspace creates room to think. Mobile and Telegram extend that language into different contexts, while shared account flows help those contexts feel connected.",
+        "The ongoing ambition is practical: make market evidence easier to inspect, uncertainty easier to recognize and the next useful question easier to ask. The project is presented here as a live product under continued development, with an emphasis on design clarity and engineering transparency rather than a promise of universal analysis or guaranteed trading results."
+      ]
+    }
+  ],
+  "persian_summary": "دارکن یک محصول تحقیق و تحلیل بازار کریپتو است که گفتگو، الگوهای نمودار، زمینهٔ بازار، حساب کاربری و ربات تلگرام را در یک تجربهٔ مرتبط کنار هم قرار می‌دهد. در این پروژه، از طراحی هویت بصری و تجربهٔ کاربری تا توسعهٔ رابط و یکپارچه‌سازی بک‌اند کار کرده‌ام. هدف این بود که پیچیدگی داده‌ها به شلوغی رابط تبدیل نشود؛ کاربر ابتدا یک مسیر روشن ببیند و جزئیات را هر زمان که لازم داشت باز کند. ترکیب سطح‌های تیره، سبز نعنایی و تأکید مسی، هویت مشترک وب و ربات را می‌سازد. نسخهٔ گوشی برای فضای محدود، کیبورد و کنترل‌های لمسی طراحی شده است. در بخش تحقیق نیز تفاوت میان دادهٔ مشاهده‌شده، سناریوی مشروط و اطلاعات ناقص اهمیت دارد. ورکرهای مستقل، الگوها را پیش از ورود کاربر آماده می‌کنند و حساب و کردیت از دادهٔ واقعی کاربر خوانده می‌شوند. دارکن محصولی زنده و در حال توسعه است؛ کیفیت طراحی و شفافیت مهندسی، جای ادعای سود یا دقت تضمینی را گرفته‌اند."
+}
