@@ -1,20 +1,15 @@
 [
   {
-    "slug": "oryzo_ai",
-    "href": "/amir/projects/oryzo_ai",
+    "slug": "drkn",
+    "href": "/amir/projects/drkn",
     "hasDetailPage": true,
     "labels": [
-      "concept • web • design • development • 3d • animation",
-      "Oryzo AI"
+      "AI research \u2022 live market data \u2022 Telegram \u2022 product design",
+      "DRKN"
     ],
     "assets": [
-      "founder.webp",
       "home.webp",
-      "home_depth.webp",
-      "image_1.webp",
-      "image_2.webp",
-      "image_3.webp",
-      "main.mp4"
+      "home_depth.webp"
     ]
   },
   {
@@ -22,7 +17,7 @@
     "href": "/amir/projects/of_the_oak",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d • animation",
+      "web \u2022 design \u2022 development \u2022 3d \u2022 animation",
       "Of The Oak"
     ],
     "assets": [
@@ -41,7 +36,7 @@
     "href": "/amir/projects/devin_ai",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "Devin AI"
     ],
     "assets": [
@@ -57,7 +52,7 @@
     "href": "/amir/projects/porsche_dream_machine",
     "hasDetailPage": true,
     "labels": [
-      "concept • 3D illustration • mograph • video",
+      "concept \u2022 3D illustration \u2022 mograph \u2022 video",
       "Porsche: Dream Machine"
     ],
     "assets": [
@@ -87,7 +82,7 @@
     "href": "/amir/projects/synthetic_human",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "Synthetic Human"
     ],
     "assets": [
@@ -107,7 +102,7 @@
     "href": "/amir/projects/ddd_2024",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "DDD 2024"
     ],
     "assets": [
@@ -124,7 +119,7 @@
     "href": "/amir/projects/spaace",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d • web3",
+      "web \u2022 design \u2022 development \u2022 3d \u2022 web3",
       "Spaace - NFT Marketplace"
     ],
     "assets": [
@@ -144,7 +139,7 @@
     "href": "/amir/projects/choo_choo_world",
     "hasDetailPage": true,
     "labels": [
-      "concept • web • game design • 3d",
+      "concept \u2022 web \u2022 game design \u2022 3d",
       "Choo Choo World"
     ],
     "assets": [
@@ -176,7 +171,7 @@
     "href": "/amir/projects/zero_tech",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "Zero Tech"
     ],
     "assets": [
@@ -189,7 +184,7 @@
     "href": "/amir/projects/spatial_fusion",
     "hasDetailPage": true,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "Meta: Spatial Fusion"
     ],
     "assets": [
@@ -219,7 +214,7 @@
     "href": "/amir/projects/worldcoin",
     "hasDetailPage": true,
     "labels": [
-      "api design • webgl • 3d",
+      "api design \u2022 webgl \u2022 3d",
       "Worldcoin Globe"
     ],
     "assets": [
@@ -232,7 +227,7 @@
     "href": "/amir/projects/lusion_labs",
     "hasDetailPage": false,
     "labels": [
-      "web • design • development • 3d",
+      "web \u2022 design \u2022 development \u2022 3d",
       "Lusion Labs"
     ],
     "assets": [
@@ -245,7 +240,7 @@
     "href": "/amir/projects/my_little_story_book",
     "hasDetailPage": false,
     "labels": [
-      "concept • design • development • 3d",
+      "concept \u2022 design \u2022 development \u2022 3d",
       "My Little Storybook"
     ],
     "assets": [
@@ -258,7 +253,7 @@
     "href": "/amir/projects/soda_experience",
     "hasDetailPage": true,
     "labels": [
-      "AR • development • 3d",
+      "AR \u2022 development \u2022 3d",
       "Soda Experience"
     ],
     "assets": [
@@ -279,7 +274,7 @@
     "href": "/amir/projects/infinite_passerella",
     "hasDetailPage": true,
     "labels": [
-      "concept • design • development • 3d",
+      "concept \u2022 design \u2022 development \u2022 3d",
       "Infinite Passerella"
     ],
     "assets": [
@@ -292,7 +287,7 @@
     "href": "/amir/projects/the_turn_of_the_screw",
     "hasDetailPage": false,
     "labels": [
-      "design • development • 3d",
+      "design \u2022 development \u2022 3d",
       "The Turn Of The Screw"
     ],
     "assets": [
@@ -305,7 +300,7 @@
     "href": "/amir/projects/maxmara_bearings_gifts",
     "hasDetailPage": false,
     "labels": [
-      "development • 3D",
+      "development \u2022 3D",
       "Max Mara: Bearing Gifts"
     ],
     "assets": [
